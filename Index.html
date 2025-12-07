@@ -1,18 +1,182 @@
-<link rel="stylesheet" href="css/style.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Nina Finstad – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- kobling til css -->
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="CSS/style.css">
+
+  <!-- Main JavaScript -->
+  <script src="JS/main.js" defer></script>
 </head>
 <body>
+  <!-- ================= HEADER / NAV ================= -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="index.html">
+        <span class="site-logo__mark">NF</span>
+        <span class="site-logo__text">Nina Finstad</span>
+      </a>
 
-    <h1>Hello Portfolio!</h1>
-    <p>This is a test to check that everything works.</p>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__list">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="#experience">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <!-- ================= MAIN CONTENT ================= -->
+  <main id="main-content">
+
+    <!-- ===== HERO / INTRO ===== -->
+    <section id="hero" class="section hero">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow">Hi, I’m Nina</p>
+          <h1 class="hero__title">
+            I’m endlessly curious, driven by real problem-solving, and excited about how AI can support humans rather than replace them.
+          </h1>
+          <p class="hero__lead">
+            After many years working closely with customers, I’ve learned how much it matters that people feel seen, understood, and heard.
+            Now I’m combining that experience with UX and Web Development to design digital products that make everyday life feel clearer and easier.
+          </p>
+
+          <div class="hero__actions">
+            <a href="projects.html" class="btn btn--primary">View My Projects</a>
+            <a href="#contact" class="btn btn--secondary">Contact Me</a>
+          </div>
+        </div>
+
+        <figure class="hero__media">
+          <!-- Bytt ut src med ditt faktiske bilde senere -->
+          <img src="Images/portrait-placeholder.jpg"
+               alt="Portrait of Nina Finstad"
+               class="hero__image">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== WHY SOLVING PROBLEMS MATTERS ===== -->
+    <section id="why" class="section section--text">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2>Why Solving Problems Matters To Me</h2>
+        </header>
+
+        <div class="section__body">
+          <p>
+            I love figuring out how things can work better. Whether it’s a workflow, a digital product,
+            or an everyday task, I’m motivated by solving real problems that make life easier for people.
+          </p>
+          <p>
+            My background has taught me to listen closely, understand frustrations, and turn those insights
+            into actionable solutions. Moving into UX and Web Development has given me tools to turn that mindset
+            into digital experiences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE & GOALS ===== -->
+    <section id="experience" class="section section--split">
+      <div class="section__inner section__inner--split">
+        <div class="section__content">
+          <header class="section__header">
+            <h2>My Experience & Goals</h2>
+          </header>
+
+          <div class="section__body">
+            <p>
+              After many years working closely with clients in a creative industry, I’ve built a strong understanding
+              of service, communication, and how people actually behave in real life — not just in theory.
+            </p>
+            <p>
+              Now I’m combining that experience with UX and Web Development, learning fast, iterating through real projects,
+              and exploring how AI can support better user experiences without losing the human perspective.
+            </p>
+            <p>
+              My goal is to contribute to teams where curiosity, structure, and user-centred thinking matter —
+              and where there’s room to keep growing as a designer and developer.
+            </p>
+          </div>
+        </div>
+
+        <figure class="section__media">
+          <!-- Bytt ut src med bildet fra Figma (laptop / workspace osv.) -->
+          <img src="Images/workspace-placeholder.jpg"
+               alt="Laptop and workspace representing digital projects"
+               class="section__image">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT / LET'S TALK ===== -->
+    <section id="contact" class="section section--contact">
+      <div class="section__inner contact-layout">
+        <div class="contact-layout__form">
+          <header class="section__header">
+            <h2>Let’s talk</h2>
+            <p>If you’d like to connect, collaborate, or just have a question, feel free to reach out.</p>
+          </header>
+
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <p class="form-message" aria-live="polite"></p>
+
+            <button type="submit" class="btn btn--primary">Send message</button>
+          </form>
+        </div>
+
+        <aside class="contact-layout__aside" aria-label="Other ways to reach me">
+          <h3>Find me online</h3>
+          <ul class="contact-links">
+            <!-- Oppdater disse href-ene med dine ekte linker -->
+            <li>
+              <a class="contact-link" href="mailto:your-email@example.com">
+                Email
+              </a>
+            </li>
+            <li>
+              <a class="contact-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a class="contact-link" href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+                Facebook
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>&copy; <span id="year"></span> Nina Finstad. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
