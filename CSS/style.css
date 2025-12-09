@@ -1,13 +1,28 @@
-/* ================================
-   GLOBAL RESET + BASE STYLES
-================================ */
+/* =========================================
+   DESIGN TOKENS
+========================================= */
+:root {
+  --color-bg: #2a2a2a;
+  --color-text: #f6c7a8;
+  --color-dark: #222;
+  --color-accent: #f6c7a8;
+  --color-border-soft: rgba(255, 255, 255, 0.18);
 
+  --max-width: 1100px;
+
+  --radius-soft: 12px;
+  --radius-round: 999px;
+}
+
+/* =========================================
+   RESET + BASE
+========================================= */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -15,47 +30,273 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif; /* Du kan bytte senere */
+  font-family: "Shanti", sans-serif;
   line-height: 1.6;
-  color: #e8e8e8;
-  background-color: #1c1c1c;
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
-/* Tekstbredde / page container */
-.section,
-.site-header__inner,
-.section__inner {
-  width: min(1100px, 90%);
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover,
+a:focus-visible {
+  opacity: 0.85;
+}
+
+/* Layout helpers */
+.section {
+  width: min(var(--max-width), 90%);
   margin: 0 auto;
   padding: 3rem 0;
 }
 
-/* Linker */
-a {
-  color: #e8e8e8;
-  text-decoration: none;
+/* =========================================
+   SKIP LINK
+========================================= */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 1rem;
+  background: var(--color-accent);
+  color: var(--color-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-round);
+  z-index: 20;
+}
+.skip-link:focus {
+  left: 1rem;
 }
 
-a:hover {
-  opacity: 0.8;
+/* =========================================
+   HEADER / NAV
+========================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(42, 42, 42, 0.96);
+  backdrop-filter: blur(10px);
 }
 
-/* Buttons */
+.site-header__inner {
+  width: min(800px, 90%);
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  justify-content: center;
+}
+
+.site-nav__list a {
+  position: relative;
+}
+.site-nav__list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2rem;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.15s ease;
+}
+.site-nav__list a:hover::after,
+.site-nav__list a:focus-visible::after,
+.site-nav__list a[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.6rem;
-  border-radius: 4px;
+  border-radius: var(--radius-round);
   font-weight: 600;
-  margin-right: 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
 }
 
 .btn--primary {
-  background-color: #d9a37d;
-  color: #222;
+  background: var(--color-accent);
+  color: var(--color-dark);
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
 }
 
 .btn--secondary {
-  background-color: transparent;
-  border: 2px solid #d9a37d;
-  color: #d9a37d;
+  background: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.btn--secondary:hover {
+  background: rgba(246, 199, 168, 0.1);
+}
+
+/* =========================================
+   HERO
+========================================= */
+.hero {
+  padding-top: 4rem;
+}
+
+.hero__inner {
+  width: min(var(--max-width), 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1.4fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+
+.hero__title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+}
+
+.hero__lead {
+  font-size: 1rem;
+  max-width: 38rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero__image {
+  max-width: 320px;
+  border-radius: 18px;
+  border: 1px solid var(--color-border-soft);
+  object-fit: cover;
+}
+
+/* =========================================
+   GENERIC SECTIONS
+========================================= */
+.section__header {
+  margin-bottom: 1.5rem;
+}
+.section__header h2 {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.section__body p + p {
+  margin-top: 0.75rem;
+}
+
+/* Split layout */
+.section--split .section__inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.section__image {
+  border-radius: 18px;
+  border: 1px solid var(--color-border-soft);
+}
+
+/* =========================================
+   CONTACT
+========================================= */
+.section--contact .section__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1.1fr;
+  gap: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  border-radius: var(--radius-soft);
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: var(--color-text);
+}
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+}
+
+/* =========================================
+   PROJECT PAGE
+========================================= */
+.project-case__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr;
+  gap: 2.5rem;
+}
+
+.project-case__media img {
+  width: 100%;
+  border-radius: var(--radius-soft);
+  border: 1px solid var(--color-border-soft);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.site-footer {
+  border-top: 1px solid #333;
+  padding: 1.2rem 0;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 900px) {
+  .hero__inner,
+  .section--split .section__inner,
+  .section--contact .section__inner,
+  .project-case__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__media {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .site-nav__list {
+    font-size: 0.8rem;
+    gap: 1rem;
+  }
+  .hero__title {
+    font-size: 1.8rem;
+  }
 }

@@ -1,4 +1,6 @@
-// Basic JS for portfolio site
+// ==============================
+//  Basic JS for portfolio site
+// ==============================
 
 // Set current year in footer
 const yearSpan = document.getElementById("year");
@@ -6,7 +8,7 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// Simple contact form handling (frontend demo)
+// Simple contact form handling (frontend demo only)
 const form = document.getElementById("contact-form");
 const messageEl = document.getElementById("form-message");
 
@@ -20,13 +22,13 @@ if (form && messageEl) {
 
     if (!name || !email || !message) {
       messageEl.textContent = "Please fill in all fields.";
-      messageEl.style.color = "var(--color-error)";
+      messageEl.style.color = "#ffb3b3"; // lys rød / feilmelding
       return;
     }
 
-    // Enkel “demo”-melding – ingen ekte sending
-    messageEl.textContent = "Thank you! This demo form has been submitted.";
-    messageEl.style.color = "var(--color-accent-soft)";
+    messageEl.textContent =
+      "Thank you! This demo form has been submitted (no real email is sent).";
+    messageEl.style.color = "#d9a37d"; // samme tone som knappen
     form.reset();
   });
 }

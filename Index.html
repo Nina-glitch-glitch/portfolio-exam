@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Nina Finstad – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shanti&display=swap" rel="stylesheet">
 
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="CSS/style.css">
 
-  <!-- Main JavaScript -->
+  <!-- JavaScript -->
   <script src="JS/main.js" defer></script>
 </head>
+
 <body>
-  <!-- ================= HEADER / NAV ================= -->
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-logo" href="index.html">
-        <span class="site-logo__mark">NF</span>
-        <span class="site-logo__text">Nina Finstad</span>
-      </a>
-
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__list">
           <li><a href="#hero">Home</a></li>
@@ -31,20 +36,23 @@
     </div>
   </header>
 
-  <!-- ================= MAIN CONTENT ================= -->
+  <!-- ================= MAIN ================= -->
   <main id="main-content">
 
-    <!-- ===== HERO / INTRO ===== -->
+    <!-- HERO ------------------------------- -->
     <section id="hero" class="section hero">
       <div class="hero__inner">
+
         <div class="hero__content">
           <p class="eyebrow">Hi, I’m Nina</p>
+
           <h1 class="hero__title">
-            I’m endlessly curious, driven by real problem-solving, and excited about how AI can support humans rather than replace them.
+            I’m endlessly curious, driven by real problem-solving, and excited about how AI can support humans.
           </h1>
+
           <p class="hero__lead">
-            After many years working closely with customers, I’ve learned how much it matters that people feel seen, understood, and heard.
-            Now I’m combining that experience with UX and Web Development to design digital products that make everyday life feel clearer and easier.
+            After many years working closely with customers, I’ve learned how much it matters that people feel seen, understood, and heard. 
+            Now I’m combining that experience with UX and Web Development to design digital products that make everyday life easier.
           </p>
 
           <div class="hero__actions">
@@ -54,15 +62,16 @@
         </div>
 
         <figure class="hero__media">
-          <!-- Bytt ut src med ditt faktiske bilde senere -->
-          <img src="Images/portrait-placeholder.jpg"
-               alt="Portrait of Nina Finstad"
-               class="hero__image">
+          <img 
+            src="Images/portrait-placeholder.jpg" 
+            alt="Portrait of Nina Finstad" 
+            class="hero__image">
         </figure>
+
       </div>
     </section>
 
-    <!-- ===== WHY SOLVING PROBLEMS MATTERS ===== -->
+    <!-- WHY ------------------------------- -->
     <section id="why" class="section section--text">
       <div class="section__inner">
         <header class="section__header">
@@ -71,21 +80,21 @@
 
         <div class="section__body">
           <p>
-            I love figuring out how things can work better. Whether it’s a workflow, a digital product,
+            I love figuring out how things can work better. Whether it’s a workflow, a digital product, 
             or an everyday task, I’m motivated by solving real problems that make life easier for people.
           </p>
           <p>
-            My background has taught me to listen closely, understand frustrations, and turn those insights
-            into actionable solutions. Moving into UX and Web Development has given me tools to turn that mindset
-            into digital experiences.
+            My background has taught me to listen closely, understand frustrations, and turn insights 
+            into actionable solutions. UX and Web Development give me tools to bring those solutions to life.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ===== EXPERIENCE & GOALS ===== -->
+    <!-- EXPERIENCE ------------------------------- -->
     <section id="experience" class="section section--split">
-      <div class="section__inner section__inner--split">
+      <div class="section__inner">
+
         <div class="section__content">
           <header class="section__header">
             <h2>My Experience & Goals</h2>
@@ -93,47 +102,49 @@
 
           <div class="section__body">
             <p>
-              After many years working closely with clients in a creative industry, I’ve built a strong understanding
-              of service, communication, and how people actually behave in real life — not just in theory.
+              Coming from a creative industry, I have deep experience with communication, personalization, 
+              and real-world human behavior—not theory, but practice.
             </p>
             <p>
-              Now I’m combining that experience with UX and Web Development, learning fast, iterating through real projects,
-              and exploring how AI can support better user experiences without losing the human perspective.
+              Now I combine that with UX and Web Development, learning fast through real projects and exploring 
+              how AI can support better user experiences without losing the human perspective.
             </p>
             <p>
-              My goal is to contribute to teams where curiosity, structure, and user-centred thinking matter —
-              and where there’s room to keep growing as a designer and developer.
+              My goal is to contribute to teams where curiosity, structure, and user-centered thinking matter.
             </p>
           </div>
         </div>
 
         <figure class="section__media">
-          <!-- Bytt ut src med bildet fra Figma (laptop / workspace osv.) -->
-          <img src="Images/workspace-placeholder.jpg"
-               alt="Laptop and workspace representing digital projects"
-               class="section__image">
+          <img 
+            src="Images/workspace-placeholder.jpg" 
+            alt="Laptop and workspace representing digital projects"
+            class="section__image">
         </figure>
+
       </div>
     </section>
 
-    <!-- ===== CONTACT / LET'S TALK ===== -->
+    <!-- CONTACT ------------------------------- -->
     <section id="contact" class="section section--contact">
-      <div class="section__inner contact-layout">
-        <div class="contact-layout__form">
+      <div class="section__inner">
+
+        <!-- Form -->
+        <div>
           <header class="section__header">
             <h2>Let’s talk</h2>
-            <p>If you’d like to connect, collaborate, or just have a question, feel free to reach out.</p>
+            <p>If you’d like to connect, collaborate, or just ask a question, feel free to reach out.</p>
           </header>
 
           <form id="contact-form" novalidate>
             <div class="form-group">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required>
+              <input id="name" name="name" type="text" required autocomplete="name">
             </div>
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
+              <input id="email" name="email" type="email" required autocomplete="email">
             </div>
 
             <div class="form-group">
@@ -147,29 +158,19 @@
           </form>
         </div>
 
-        <aside class="contact-layout__aside" aria-label="Other ways to reach me">
+        <!-- Side links -->
+        <aside>
           <h3>Find me online</h3>
           <ul class="contact-links">
-            <!-- Oppdater disse href-ene med dine ekte linker -->
-            <li>
-              <a class="contact-link" href="mailto:your-email@example.com">
-                Email
-              </a>
-            </li>
-            <li>
-              <a class="contact-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a class="contact-link" href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-                Facebook
-              </a>
-            </li>
+            <li><a href="mailto:your-email@example.com" class="contact-link">Email</a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" class="contact-link">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer" class="contact-link">Facebook</a></li>
           </ul>
         </aside>
+
       </div>
     </section>
+
   </main>
 
   <!-- ================= FOOTER ================= -->
@@ -178,5 +179,6 @@
       <p>&copy; <span id="year"></span> Nina Finstad. All rights reserved.</p>
     </div>
   </footer>
+
 </body>
 </html>
