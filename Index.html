@@ -40,33 +40,28 @@
   <main id="main-content">
 
     <!-- HERO ------------------------------- -->
-    <section id="hero" class="section hero">
+    <section id="hero" class="hero section">
       <div class="hero__inner">
 
+        <!-- Left side — heading + text + buttons -->
         <div class="hero__content">
-          <p class="eyebrow">Hi, I’m Nina</p>
-
-          <h1 class="hero__title">
-            I’m endlessly curious, driven by real problem-solving, and excited about how AI can support humans.
-          </h1>
+          <h1 class="hero__title">Hi, I`m Nina</h1>
 
           <p class="hero__lead">
-            After many years working closely with customers, I’ve learned how much it matters that people feel seen, understood, and heard. 
-            Now I’m combining that experience with UX and Web Development to design digital products that make everyday life easier.
+            I’m endlessly curious, driven by real problem-solving, and excited about how AI
+            can support humans rather than replace them.
           </p>
 
           <div class="hero__actions">
-            <a href="projects.html" class="btn btn--primary">View My Projects</a>
-            <a href="#contact" class="btn btn--secondary">Contact Me</a>
+            <a href="projects.html" class="btn btn--primary">→ View My Projects</a>
+            <a href="#contact" class="btn btn--primary">→ Contact Me</a>
           </div>
         </div>
 
-        <figure class="hero__media">
-          <img 
-            src="Images/portrait-placeholder.jpg" 
-            alt="Portrait of Nina Finstad" 
-            class="hero__image">
-        </figure>
+        <!-- Right side — image -->
+        <div class="hero__media">
+          <img src="Images/2025-11-28_11.39.59.jpg" alt="Portrait of Nina Finstad">
+        </div>
 
       </div>
     </section>
@@ -80,11 +75,11 @@
 
         <div class="section__body">
           <p>
-            I love figuring out how things can work better. Whether it’s a workflow, a digital product, 
+            I love figuring out how things can work better. Whether it’s a workflow, a digital product,
             or an everyday task, I’m motivated by solving real problems that make life easier for people.
           </p>
           <p>
-            My background has taught me to listen closely, understand frustrations, and turn insights 
+            My background has taught me to listen closely, understand frustrations, and turn insights
             into actionable solutions. UX and Web Development give me tools to bring those solutions to life.
           </p>
         </div>
@@ -97,16 +92,16 @@
 
         <div class="section__content">
           <header class="section__header">
-            <h2>My Experience & Goals</h2>
+            <h2>My Experience &amp; Goals</h2>
           </header>
 
           <div class="section__body">
             <p>
-              Coming from a creative industry, I have deep experience with communication, personalization, 
+              Coming from a creative industry, I have deep experience with communication, personalization,
               and real-world human behavior—not theory, but practice.
             </p>
             <p>
-              Now I combine that with UX and Web Development, learning fast through real projects and exploring 
+              Now I combine that with UX and Web Development, learning fast through real projects and exploring
               how AI can support better user experiences without losing the human perspective.
             </p>
             <p>
@@ -116,8 +111,8 @@
         </div>
 
         <figure class="section__media">
-          <img 
-            src="Images/workspace-placeholder.jpg" 
+          <img
+            src="Images/workspace-placeholder.jpg"
             alt="Laptop and workspace representing digital projects"
             class="section__image">
         </figure>
@@ -129,43 +124,40 @@
     <section id="contact" class="section section--contact">
       <div class="section__inner">
 
-        <!-- Form -->
-        <div>
-          <header class="section__header">
+        <div class="contact-card">
+          <header class="section__header section__header--center">
             <h2>Let’s talk</h2>
-            <p>If you’d like to connect, collaborate, or just ask a question, feel free to reach out.</p>
           </header>
 
-          <form id="contact-form" novalidate>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" required autocomplete="name">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Name">
             </div>
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email">
+            <div class="form-row">
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="Email">
             </div>
 
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
+            <div class="form-row">
+              <textarea id="message" name="message" rows="4" required placeholder="Message"></textarea>
             </div>
 
-            <p class="form-message" aria-live="polite"></p>
+            <p id="form-message" class="form-message" aria-live="polite"></p>
 
-            <button type="submit" class="btn btn--primary">Send message</button>
+            <button type="submit" class="btn-submit">Submit</button>
           </form>
         </div>
 
-        <!-- Side links -->
-        <aside>
-          <h3>Find me online</h3>
-          <ul class="contact-links">
-            <li><a href="mailto:your-email@example.com" class="contact-link">Email</a></li>
-            <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" class="contact-link">LinkedIn</a></li>
-            <li><a href="https://www.facebook.com" target="_blank" rel="noreferrer" class="contact-link">Facebook</a></li>
-          </ul>
+        <aside aria-label="Other ways to reach me" class="contact-actions">
+          <a class="contact-pill" href="https://www.facebook.com" target="_blank" rel="noreferrer">
+            → Facebook
+          </a>
+          <a class="contact-pill" href="mailto:your-email@example.com">
+            → Gmail
+          </a>
+          <a class="contact-pill" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+            → LinkedIn
+          </a>
         </aside>
 
       </div>
