@@ -570,7 +570,7 @@ textarea:focus-visible {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr; /* tekst | bilde */
   gap: 4rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .project-hero__content {
@@ -603,6 +603,8 @@ textarea:focus-visible {
 .project-hero__media {
   justify-self: end;
   max-width: 520px;
+  margin-top: 3rem;  /* juster 2–6rem etter smak */
+  align-self: center;
 }
 
 .project-hero__media img {
@@ -629,6 +631,97 @@ textarea:focus-visible {
   }
 
   .project-block p {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+}
+/* =========================================
+   PROJECT – RESEARCH + DEFINITION & IDEATION
+========================================= */
+
+.project-research {
+  padding: 4rem 0 5rem;
+}
+
+.project-research__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;  /* tekst | bilde */
+  grid-template-rows: auto auto;
+  column-gap: 4rem;
+  row-gap: 3rem;
+  align-items: flex-start;
+}
+
+/* Plassering i gridet */
+.research-block {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.research-media--survey {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.research-media--mapping {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.definition-block {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Bilder */
+.research-media img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+}
+
+/* Tekststil – gjenbruker samme uttrykk som Overview/Problem/Solution */
+.research-block p,
+.definition-block p {
+  font-family: "Shanti", sans-serif;
+  font-size: 1.375rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-base);
+  max-width: 60rem;
+}
+
+/* Responsiv stacking på mobil/tablet */
+@media (max-width: 900px) {
+  .project-research {
+    padding: 3rem 0 3rem;
+  }
+
+  .project-research__inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    column-gap: 0;
+    row-gap: 2rem;
+  }
+
+  .research-block,
+  .research-media--survey,
+  .research-media--mapping,
+  .definition-block {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .research-media--survey,
+  .research-media--mapping {
+    max-width: 100%;
+  }
+
+  .research-block p,
+  .definition-block p {
     font-size: 1.1rem;
     line-height: 1.8rem;
   }
