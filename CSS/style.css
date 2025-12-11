@@ -3,13 +3,14 @@
 ========================================= */
 :root {
   --color-bg: #2a2a2a;
-  --color-text: #f6c7a8;
+  --color-text-base: #f6c7a8;
+  --color-text-soft: rgba(246, 199, 168, 0.9);   /* 90% – brukt i hero/overskrifter */
   --color-dark: #222;
   --color-accent: #f6c7a8;
+  --color-accent-soft: rgba(246, 199, 168, 0.8); /* 80% – knapper, contact-card */
   --color-border-soft: rgba(255, 255, 255, 0.18);
-  --color-accent-soft: rgba(246, 199, 168, 0.8); /* F6C7A8 @ 80% */
 
-  --max-width: 1100px;
+  --max-width: 1400px;
 
   --radius-soft: 12px;
   --radius-button: 30px;
@@ -35,7 +36,7 @@ html {
 body {
   font-family: "Shanti", sans-serif;
   line-height: 1.6;
-  color: var(--color-text);
+  color: var(--color-text-base);
   background: var(--color-bg);
 }
 
@@ -137,10 +138,12 @@ a:focus-visible {
 }
 
 /* =========================================
-   BUTTONS
+   GENERELLE KNAPPER
 ========================================= */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.8rem 1.6rem;
   border-radius: var(--radius-button);
   font-weight: 600;
@@ -171,107 +174,249 @@ a:focus-visible {
   background: rgba(246, 199, 168, 0.1);
 }
 
-/* =========================================
-   HERO
-========================================= */
-/* =========================================
-   HERO – matche Figma
-========================================= */
-.hero {
-  padding: 4rem 0 4rem;
+/* Hero-knapper – 200 x 50 som i Figma */
+.btn--primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 50px;
+  padding: 0 1.6rem;
+  border-radius: 30px;
+  background: var(--color-accent-soft);   /* 80 % */
+  color: #222;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
 }
 
+/* =========================================
+   HERO – DESKTOP
+========================================= */
+.hero {
+  padding: 1rem 0 4rem;
+}
+
+/* Desktop: én container, større gap mellom tekst og bilde */
 .hero__inner {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 646px minmax(0, 1fr); /* tekstblokk + bilde, ca som Figma */
-  column-gap: 3rem;
+  /* tekstkolonne | bildekollonne */
+  grid-template-columns: 1fr 1fr;
+  /* STYR AVSTANDEN MELLOM TEKST OG BILDE HER */
+  column-gap: 15rem;
   align-items: center;
+  min-height: 33rem;
 }
 
-/* Venstre side – tekst */
+/* Venstre side – tekstblokket */
 .hero__content {
-  max-width: 646px;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-  margin-bottom: 0.4rem;
+  max-width: 29rem;
+  text-align: center;
+  margin-top: 3.5rem;
 }
 
 .hero__title {
-  font-size: 1.6rem;
-  margin-bottom: 1.6rem;
-  color: var(--color-accent);
-  font-weight: 400;  /* som Shanti Regular */
+  font-family: "Shanti", sans-serif;
+  font-weight: 450;
+  color: rgba(246, 199, 168, 0.9);
+  font-size: 2.8rem;
+  letter-spacing: 0.17em;
+  margin-bottom: 1.8rem;
 }
 
 .hero__lead {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  max-width: 38rem;
-  margin-bottom: 2rem;
+  font-family: "Shanti", sans-serif;
+  font-size: 1.56rem;        /* 25px ≈ 1.56rem */
+  line-height: 2.7;          /* tilsvarer 70px på 25px font */
+  letter-spacing: 0.16em;    /* 16% */
+  color: rgba(246, 199, 168, 0.9);
+  margin-bottom: 6rem;
 }
 
 /* Knapper under teksten */
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+  justify-content: center;
+  gap: 1.75rem;
 }
 
-/* Høyre side – bilde */
+/* Høyre side – bildekolonnen */
 .hero__media {
-  justify-self: end;        /* skyver bildet mot høyre slik som i Figma */
-  width: 420px;
-  height: 420px;
-  overflow: hidden;         /* gjør at bildet croppes i ramma */
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 520px;     /* bredden på selve bildet */
+  height: 700px;        /* høyden – juster 600–700 hvis du vil */
+  overflow: hidden;
+  margin-top: -3rem;
 }
 
+/* Selve bildet – fyller ramma */
 .hero__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;        /* gir samme “crop” som i Figma */
-  border-radius: 0;         /* INGEN corner radius */
-  border: none;             /* ingen kantlinje */
+  object-fit: cover;
+  object-position: 50%;   /* evt: 60% 50% hvis du vil forskyve litt */
+  display: block;
+  border-radius: 0;
+  border: none;
 }
 
+/* Sotingen fra midten og ut mot høyre */
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  pointer-events: none;
+}
 
 /* =========================================
-   GENERIC SECTIONS (WHY, EXPERIENCE)
+   WHY SECTION
 ========================================= */
-.section__header {
-  margin-bottom: 1.5rem;
+.why {
+  padding: 6rem 0;               /* luft over/under seksjonen */
 }
 
-.section__header h2 {
-  font-size: 1.6rem;
-  color: #ffffff;
+.why__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;                /* midt på siden */
+  text-align: left;
 }
 
-.section__body p + p {
-  margin-top: 0.75rem;
+/* Tittel */
+.why__title {
+  font-family: "Shanti", sans-serif;
+  font-weight: 300;              /* litt tynnere */
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 2.5rem;
+  margin-left: 0;                /* VIKTIG: ingen innrykk */
+  color: var(--color-text-soft);
 }
 
-/* Split layout (experience) */
-.section--split .section__inner {
-  display: grid;
-  grid-template-columns: 1.5fr 1.2fr;
-  gap: 2.5rem;
-  align-items: center;
+/* Brødtekst */
+.why__text {
+  font-family: "Shanti", sans-serif;
+  font-size: 1.375rem;           /* 25px */
+  line-height: 2.4rem;           /* ca 50px */
+  letter-spacing: 0.12em;
+  color: var(--color-text-base);
+  max-width: 62rem;
+  text-align: left;
+  margin-left: 0;                /* VIKTIG: ingen innrykk */
 }
 
-.section__image {
-  border-radius: 18px;
-  border: 1px solid var(--color-border-soft);
+.why__actions {
+  display: flex;
+  justify-content: flex-start;   /* starter på samme venstrekant som teksten */
+  max-width: 62rem;
+  margin: 3rem 0 0;              /* litt luft ned fra teksten */
+}
+
+.why__actions .btn {
+  margin-left: 0;                /* ingen ekstra innrykk */
 }
 
 /* =========================================
-   GENERELLE FORM-STILER
+   MY EXPERIENCE & GOALS
+========================================= */
+.experience {
+  padding: 5rem 0;
+}
+
+.experience__inner {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr; /* litt bredere tekst, smalere bilde */
+  align-items: center;
+  gap: 2rem;
+  width: min(1270px, 90%);
+  margin: 0 auto;
+}
+
+/* Tittel – My Experience & Goals (match WHY-stil) */
+.experience__title {
+  font-family: "Shanti", sans-serif;
+  font-weight: 300;              /* litt tynnere */
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 2.5rem;
+  margin-left: 0;                /* VIKTIG: ingen innrykk */
+  color: var(--color-text-soft);
+}
+
+/* Brødtekst – My Experience & Goals (identisk med WHY-seksjonen) */
+.experience__text {
+  font-family: "Shanti", sans-serif;
+  font-size: 1.375rem;           /* 25px */
+  line-height: 2.4rem;           /* ca 50px */
+  letter-spacing: 0.12em;
+  color: var(--color-text-base);
+  max-width: 62rem;
+  text-align: left;
+  margin-left: 0;                /* VIKTIG: ingen innrykk */
+}
+
+.experience__text p + p {
+  margin-top: 0.6rem;
+}
+
+/* Bildekolonne */
+.experience__media {
+  justify-self: end;
+  max-width: 420px;   /* juster om du vil ha bildet større/mindre */
+}
+
+.experience__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0; /* <-- Viktig! */
+}
+
+/* ---------- Mobile / tablet (experience) ---------- */
+@media (max-width: 900px) {
+  .experience__inner {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
+
+  .experience__media {
+    justify-self: center;
+    max-width: 500px;
+  }
+
+  .experience__title {
+    text-align: left;
+  }
+}
+
+/* MOBIL / TABLET – legg bildet over teksten */
+@media (max-width: 900px) {
+  .experience__inner {
+    grid-template-columns: 1fr;
+    row-gap: 2.5rem;
+  }
+
+  .experience__media {
+    order: -1;
+    justify-self: center;
+  }
+
+  .experience__media img {
+    max-width: 100%;
+  }
+}
+
+/* =========================================
+   GENERELLE FORM-STILER (fallback)
 ========================================= */
 input,
 textarea {
@@ -280,7 +425,7 @@ textarea {
   border-radius: var(--radius-input);
   border: 1px solid #444;
   background: #2a2a2a;
-  color: var(--color-text);
+  color: var(--color-text-base);
   font: inherit;
   box-sizing: border-box;
 }
@@ -298,25 +443,25 @@ textarea:focus-visible {
 }
 
 /* =========================================
-   CONTACT – match Figma
+   CONTACT – MATCH FIGMA
 ========================================= */
 .section--contact .section__inner {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 674px 1fr; /* kortet + kolonnen med knapper */
+  grid-template-columns: 674px 1fr;   /* kortet + knappesøyle */
   column-gap: 5rem;
   align-items: flex-start;
 }
 
-/* Kontaktkortet (venstre) */
+/* Kortet til venstre */
 .contact-card {
-  width: 674px;                      /* samme bredde som i Figma */
+  width: 674px;
   max-width: 674px;
   background: var(--color-accent-soft);
   color: #222;
-  padding: 1.8rem 2.5rem 2rem;       /* litt mindre topp/bunn → lavere kort */
-  border-radius: 0;                  /* rette hjørner */
+  padding: 1.8rem 2.5rem 2rem;
+  border-radius: 0;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   display: flex;
@@ -332,14 +477,14 @@ textarea:focus-visible {
 /* Let’s talk – heading i contact-kortet */
 .contact-card h2 {
   font-family: "Shanti", sans-serif;
-  font-weight: 400;          /* ikke bold */
-  color: #222;               /* sort tekst */
+  font-weight: 400;      /* ikke bold */
+  color: #222;
   font-size: 1.6rem;
 }
 
 /* Formular inne i kortet */
 .contact-form {
-  width: 594px;                      /* eksakt fra Figma */
+  width: 594px;             /* eksakt fra Figma */
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
@@ -357,7 +502,7 @@ textarea:focus-visible {
 
 .form-row textarea {
   width: 594px;
-  height: 240px;                     /* litt lavere enn 278 → kortet blir mindre høyt */
+  height: 240px;           /* litt lavere enn 278 → kortet blir noe lavere */
   background: #ffffff;
   border-radius: 30px;
   border: none;
@@ -379,14 +524,14 @@ textarea:focus-visible {
   cursor: pointer;
 }
 
-/* Pill-knapper (Facebook / Gmail / LinkedIn) */
+/* Pill-knapper (Facebook / Gmail / LinkedIn) til høyre */
 .contact-actions {
   display: flex;
   flex-direction: column;
   gap: 3.125rem;       /* 50px vertikalt mellom knappene */
   align-items: flex-start;
-  justify-self: end;   /* skyver hele kolonnen lenger til høyre */
-  margin-top: 4rem;    /* flytter kolonnen litt ned */
+  justify-self: end;
+  margin-top: 4rem;
 }
 
 .contact-pill {
@@ -409,19 +554,100 @@ textarea:focus-visible {
 }
 
 /* =========================================
-   PROJECT PAGE
+   PROJECT PAGE (projects.html)
 ========================================= */
-.project-case__grid {
+/* =========================================
+   PROJECT HERO (two-column intro section)
+========================================= */
+
+.project-hero {
+  padding: 6rem 0 4rem;
+}
+
+.project-hero__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1.2fr;
+  grid-template-columns: 1.2fr 0.8fr; /* tekst | bilde */
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.project-hero__content {
+  display: flex;
+  flex-direction: column;
   gap: 2.5rem;
 }
 
-.project-case__media img {
-  width: 100%;
-  border-radius: var(--radius-soft);
-  border: 1px solid var(--color-border-soft);
+/* Titles inside the blocks */
+.project-block__title {
+  font-family: "Shanti", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--color-text-soft);
+  margin-bottom: 0.8rem;
 }
+
+/* Body text */
+.project-block p {
+  font-family: "Shanti", sans-serif;
+  font-size: 1.375rem;     /* ca 22px */
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-base);
+  max-width: 60rem;
+}
+
+/* IMAGE COLUMN */
+.project-hero__media {
+  justify-self: end;
+  max-width: 520px;
+}
+
+.project-hero__media img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+}
+
+/* RESPONSIVT FOR PROJECT HERO */
+@media (max-width: 900px) {
+  .project-hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .project-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .project-hero__media {
+    justify-self: center;
+    max-width: 420px;
+    order: -1;             /* bilde over teksten på mobil */
+  }
+
+  .project-block p {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .project-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .project-hero__media {
+    justify-self: center;
+    max-width: 100%;
+  }
+}
+
 
 /* =========================================
    FOOTER
@@ -436,123 +662,51 @@ textarea:focus-visible {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   text-align: center;
-  font-size: 0.8rem;
-  color: #bbb;
+
+  font-family: "Shanti", sans-serif;
+  font-size: 0.9rem;          /* samme som topbar-nav */
+  letter-spacing: 0.12em;     /* gir samme følelse som resten av siten */
+  color: var(--color-text-soft);
 }
+
 
 /* =========================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE – MOBIL/TABLET (hero)
 ========================================= */
 @media (max-width: 900px) {
-  .hero__inner,
-  .section--split .section__inner,
-  .project-case__grid,
-  .section--contact .section__inner {
-    grid-template-columns: 1fr;
+  .hero {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .hero__inner {
+    width: min(var(--max-width), 90%);
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    grid-template-columns: 1fr; /* én kolonne */
+    row-gap: 2rem;
   }
 
   .hero__media {
-    order: -1;
-  }
-
-  .section--contact .section__inner {
-    column-gap: 0;
-  }
-
-  .contact-card,
-  .contact-form,
-  .form-row input,
-  .form-row textarea,
-  .btn-submit {
-    width: 100%;
-  }
-
-  .contact-actions {
-    align-items: center;
-    justify-self: center;
-    margin-top: 2rem;
-  }
-}
-@media (max-width: 900px) {
-  .hero__inner,
-  .section--split .section__inner,
-  .section--contact .section__inner,
-  .project-case__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__media {
-    order: -1;           /* bilde over tekst på små skjermer */
+    order: -1;             /* bilde over tekst */
     width: 100%;
     max-width: 500px;
-    height: auto;
-    margin: 0 auto 2rem;
+    height: 320px;
+    margin: 0 auto 1.5rem;
   }
 
   .hero__media img {
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-position: center;
   }
-}
 
-/* =========================================
-   HERO — MATCH FIGMA EXACTLY
-========================================= */
+  .hero__content {
+    text-align: left;
+    margin: 0 auto;
+  }
 
-.hero {
-  padding-top: 4rem;
-}
-
-.hero__inner {
-  width: min(var(--max-width), 90%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.6fr 1.4fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-/* ---- Heading ---- */
-.hero__title {
-  font-family: "Shanti", sans-serif;
-  font-weight: 400;                       /* IKKE bold */
-  color: var(--color-text);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.16em;                 /* 16% EXACT */
-}
-
-/* ---- Supporting text ---- */
-.hero__lead {
-  font-family: "Shanti", sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;                       /* tilsvarer 70 i Figma */
-  letter-spacing: 0.16em;
-  max-width: 40rem;
-  margin-bottom: 2rem;
-  color: var(--color-text);
-}
-
-/* ---- Buttons ---- */
-.hero__actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn--primary {
-  background: var(--color-accent-soft);    /* samme som pill buttons */
-  color: #222;
-  padding: 0.7rem 1.8rem;
-  border-radius: 30px;
-  font-weight: 600;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-}
-
-/* ---- Image ---- */
-.hero__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* gjør at bildet CROPPES slik som i Figma */
-  border-radius: 18px;
-  border: 1px solid var(--color-border-soft);
+  .hero__actions {
+    justify-content: flex-start;
+  }
 }
