@@ -743,15 +743,18 @@ textarea:focus-visible {
   grid-row: 1;
 }
 
+/* --- Survey image sizing --- */
 .research-media--survey {
-  grid-column: 2;
-  grid-row: 1;
+  max-width: 520px;        /* juster: 420–650px */
+  justify-self: end;       /* holder den pent til høyre */
+}
+
 .research-media--survey img {
   width: 100%;
-  max-width: 620px;   /* kan være 520–700, velg det som passer */
   height: auto;
   display: block;
 }
+
 
 
 .research-media--mapping {
@@ -784,52 +787,113 @@ textarea:focus-visible {
   color: var(--color-text-base);
   max-width: 60rem;
 }
+/* =========================================
+   PROJECT – DESIGN (tekst + bilder)
+========================================= */
 
-/* Responsiv stacking på mobil/tablet */
-@media (max-width: 900px) {
-  .project-research {
-    padding: 3rem 0 3rem;
-  }
+:root{
+  --design-panel-bg: #BDB4B4;
+  --design-gap: 1.25rem;
+  --design-panel-pad: 1.25rem;
+  --design-panel-max: 740px;
 
-  .project-research__inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    column-gap: 0;
-    row-gap: 2rem;
-  }
-
-  .research-block,
-  .research-media--survey,
-  .research-media--mapping,
-  .definition-block {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .research-media img {
-    max-width: 100%;
-  }
-
-  .research-block p,
-  .definition-block p {
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-  }
+  --thumb-height: 220px;   /* juster ved behov */
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-  .project-hero__inner {
+.project-design {
+  padding: 4rem 0 5rem;
+}
+
+.project-design__inner{
+  width: min(1270px, 90%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* høyre “panel” med bakgrunn */
+.project-design__panel{
+  justify-self: end;
+  width: 100%;
+  max-width: var(--design-panel-max);
+
+  background: var(--design-panel-bg);
+  padding: var(--design-panel-pad);
+}
+
+/* bilder generelt */
+.project-design__panel img{
+  width: 100%;
+  display: block;
+}
+
+/* hovedbildet */
+.project-design__main{
+  margin: 0;
+}
+
+/* thumbs (2 ved siden av hverandre) */
+.project-design__thumbs{
+  margin-top: var(--design-gap);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--design-gap);
+}
+
+.project-design__thumb{
+  margin: 0;
+}
+
+.project-design__thumb img{
+  height: var(--thumb-height);
+  object-fit: cover;
+}
+
+/* mobil: stack */
+@media (max-width: 900px){
+  .project-design__inner{
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
-  .project-hero__media {
+  .project-design__panel{
     justify-self: center;
-    max-width: 100%;
+    max-width: 520px;
+  }
+
+  .project-design__thumbs{
+    grid-template-columns: 1fr;
+  }
+
+  .project-design__thumb img{
+    height: 260px;
   }
 }
 
+
+/* Mobil: stack */
+@media (max-width: 900px){
+  .project-design__inner{
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .project-design__media{
+    justify-self: center;
+    max-width: 520px;
+  }
+
+  .project-media__thumbs{
+    grid-template-columns: 1fr;
+  }
+
+  .project-thumb img{
+    height: 260px; /* litt høyere på mobil er ofte fint */
+  }
+}
 
 /* =========================================
    FOOTER
