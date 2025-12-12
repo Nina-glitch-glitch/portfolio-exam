@@ -2,33 +2,61 @@
 //  Basic JS for portfolio site
 // ==============================
 
-// Set current year in footer
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
-
 // Simple contact form handling (frontend demo only)
 const form = document.getElementById("contact-form");
 const messageEl = document.getElementById("form-message");
 
 if (form && messageEl) {
+  // Make message area focusable for accessibility
+  messageEl.setAttribute("tabindex", "-1");
+
+  const isValidEmail = (value) => {
+    // Simple, readable email check (good enough for frontend demo)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  const setStatus = (text, isError = false) => {
+    messageEl.textContent = text;
+    messageEl.style.color = isError ? "#ffb3b3" : "#d9a37d";
+    messageEl.focus(); // helps keyboard/screen reader users notice feedback
+  };
+
+  const markInvalid = (field, invalid) => {
+    field.setAttribute("aria-invalid", invalid ? "true" : "false");
+  };
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const nameField = form.elements.namedItem("name");
+    const emailField = form.elements.namedItem("email");
+    const messageField = form.elements.namedItem("message");
+
+    const name = nameField.value.trim();
+    const email = emailField.value.trim();
+    const message = messageField.value.trim();
+
+    // reset aria-invalid
+    markInvalid(nameField, false);
+    markInvalid(emailField, false);
+    markInvalid(messageField, false);
 
     if (!name || !email || !message) {
-      messageEl.textContent = "Please fill in all fields.";
-      messageEl.style.color = "#ffb3b3"; // lys rød / feilmelding
+      if (!name) markInvalid(nameField, true);
+      if (!email) markInvalid(emailField, true);
+      if (!message) markInvalid(messageField, true);
+
+      setStatus("Please fill in all fields.", true);
       return;
     }
 
-    messageEl.textContent =
-      "Thank you! This demo form has been submitted (no real email is sent).";
-    messageEl.style.color = "#d9a37d"; // samme tone som knappen
+    if (!isValidEmail(email)) {
+      markInvalid(emailField, true);
+      setStatus("Please enter a valid email address.", true);
+      return;
+    }
+
+    setStatus("Thank you! This demo form has been submitted (no real email is sent).");
     form.reset();
   });
 }

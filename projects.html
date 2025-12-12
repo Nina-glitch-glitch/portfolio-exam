@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects – Nina Finstad</title>
 
-  <!-- GOOGLE FONT – samme som index.html -->
+  <!-- GOOGLE FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -13,34 +13,39 @@
     rel="stylesheet"
   />
 
-  <!-- KOBLER TIL SAMME CSS SOM INDEX -->
+  <!-- Uses the same stylesheet as index.html -->
+ 
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
   <!-- SKIP LINK -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- HEADER / NAV – SAMME SOM PÅ INDEX, MEN MARKER PROJECTS SOM AKTIV -->
+  <!-- HEADER / NAV -->
   <header class="site-header">
     <div class="site-header__inner">
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Main navigation">
+
         <ul class="site-nav__list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html" aria-current="page">Projects</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="projects.html" aria-current="page">Projects</a></li>
+         <li><a href="index.html#experience">About</a></li>
+         <li><a href="index.html#contact">Contact</a></li>
         </ul>
+
       </nav>
     </div>
   </header>
 
   <!-- MAIN -->
   <main id="main-content">
-    <!-- PROJECT HERO -->
+    <!-- =========================================
+        PROJECT HERO
+  ========================================= -->
     <section class="project-hero section">
       <div class="project-hero__inner">
 
-        <!-- TEXT COLUMN -->
+        
         <div class="project-hero__content">
 
           <div class="project-block">
@@ -76,9 +81,9 @@
 
         </div>
 
-        <!-- IMAGE COLUMN -->
+        
         <div class="project-hero__media">
-          <!-- NB: mappe-navn med stor I (Images) som i VS Code -->
+        
           <img src="Images/projectlaptop.png" alt="Mockup showing portfolio homepage" />
         </div>
 
@@ -86,12 +91,13 @@
     </section>
 
   
-
-  <!-- RESEARCH + DEFINITION & IDEATION -->
+<!-- =========================================
+    RESEARH
+========================================= -->
   <section class="project-research" id="research">
     <div class="project-research__inner">
 
-      <!-- Research – tekst -->
+      
       <div class="research-block">
         <h2 class="project-block__title">Research</h2>
         <p>
@@ -105,20 +111,20 @@
         </p>
       </div>
 
-    <!-- Research – survey/diagram-bilde -->
+    
 <figure class="research-media research-media--survey">
   <img src="Images/survey.png"
        alt="Survey results and research charts for the portfolio project">
 </figure>
 
 
-      <!-- Definition & Ideation – mapping-bilde -->
+      
       <figure class="research-media research-media--mapping">
         <img src="Images/storymap.png"
              alt="picture of a storymap and user stories">
       </figure>
 
-      <!-- Definition & Ideation – tekst -->
+      
       <div class="definition-block" id="definition">
         <h2 class="project-block__title">Definition & Ideation</h2>
         <p>
@@ -135,7 +141,7 @@
   </section>
 
 
-  </main>
+ 
 
  <!-- =========================================
      DESIGN – WIREFRAMES
@@ -143,7 +149,7 @@
 <section class="project-design section" id="design">
   <div class="project-design__inner">
 
-    <!-- VENSTRE: tekst -->
+    
     <header class="project-design__content">
       <h2 class="project-block__title">Design</h2>
       <p>
@@ -159,45 +165,112 @@
       </p>
     </header>
 
-    <!-- HØYRE: bilder -->
+    
     <div class="project-design__panel">
+      <div class="project-design__gallery">
 
-      <!-- STORT BILDE ØVERST -->
-      <figure class="project-design__main">
-        <a href="Images/lfwireframing.png" target="_blank" rel="noopener">
-          <img src="Images/lfwireframing.png" alt="Low-fidelity wireframes">
-        </a>
-      </figure>
+        <figure class="project-design__shot">
+          <a href="Images/lfwireframing.png" target="_blank" rel="noopener">
+            <img src="Images/lfwireframing.png" alt="Low-fidelity wireframes" loading="lazy">
+          </a>
+        </figure>
 
-      <!-- 2 BILDER VED SIDEN AV HVERANDRE -->
-      <div class="project-design__thumbs">
-        <figure class="project-design__thumb">
+        <figure class="project-design__shot">
           <a href="Images/mid-hf-wireframing.png" target="_blank" rel="noopener">
-            <img src="Images/mid-hf-wireframing.png" alt="Mid/high-fidelity wireframes">
+            <img src="Images/mid-hf-wireframing.png" alt="Mid/high-fidelity wireframes" loading="lazy">
           </a>
         </figure>
 
-        <figure class="project-design__thumb">
-          <!-- BYTT FILNAVN til eksakt det du har i Images-mappa -->
-          <a href="Images/high-fidelity-screens.png" target="_blank" rel="noopener">
-            <img src="Images/high-fidelity-screens.png" alt="High-fidelity screens">
-          </a>
-        </figure>
       </div>
-
     </div>
 
   </div>
 </section>
 
 
-  <!-- FOOTER – SAMME SOM INDEX -->
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      © 2025 Nina Finstad
-    </div>
-  </footer>
+<!-- =========================================
+     PROTOTYPE & BUILD
+========================================= -->
+<section class="project-prototype section" id="prototype">
+  <div class="project-prototype__inner">
 
-  <script src="JS/main.js"></script>
+    
+    <header class="project-prototype__content">
+      <h2 class="project-block__title">Prototype &amp; Build</h2>
+      <p>
+        The interactive prototype was tested to validate flow, navigation, clarity of messaging, and hierarchy.
+        Feedback highlighted that employers prefer short explanations, fast scanning, and transparency about the designer’s role — so these improvements were prioritised before development.
+      </p>
+      <p>
+        The prototype then transitioned into code using HTML, CSS, and JavaScript to ensure functionality, usability, and responsiveness across devices.
+      </p>
+    </header>
+
+    
+    <figure class="project-prototype__media">
+      <a href="Images/prototype.png" target="_blank" rel="noopener">
+        <img src="Images/prototype.png" alt="Prototype and user flow overview" loading="lazy">
+      </a>
+    </figure>
+
+  </div>
+</section>
+
+<!-- =========================================
+     REFLECTION
+========================================= -->
+<section class="project-reflection section" id="reflection">
+  <div class="project-reflection__inner">
+
+    <header class="project-reflection__content project-block">
+      <h2 class="project-block__title">Reflection</h2>
+
+      <p>
+        This project taught me that a strong portfolio is not defined by perfect visuals,
+        but by clarity of thinking. Grounding every design decision in research — interviews,
+        surveys, story mapping, and user needs — shifted my focus from showing what I made
+        to explaining why it matters.
+      </p>
+
+      <p>
+        The biggest mindset shift was designing for the viewer instead of for myself.
+        Simplicity, scannability, and transparency were not limitations — they were what
+        made the story clearer. When users quickly understand the context, the reasoning,
+        and the outcome, they are more likely to stay engaged and explore further.
+      </p>
+
+      <p>
+        I also learned that a portfolio is a living product. It will evolve as I evolve —
+        and this version reflects who I am right now: curious, analytical, user-centred,
+        and determined to communicate process rather than perfection.
+      </p>
+
+      <p>
+        If this project taught me one thing above all, it is this:
+        designing for others’ needs ultimately strengthens my own work.
+        A portfolio is not created for me, but for the people using it — and when it clearly
+        communicates value, intent, and process, it works in my favour as well.
+      </p>
+
+      <p>
+        This project also came with a steep learning curve, but one I am genuinely grateful for.
+        It pushed me to think more critically, work more intentionally, and grow more confident
+        in both my design decisions and my development skills.
+      </p>
+    </header>
+
+  </div>
+</section>
+ </main>
+
+
+  <!-- FOOTER -->
+ <footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>Thanks For Visiting My Portfolio.</p>
+    <p>© 2025 Nina Finstad</p>
+  </div>
+</footer>
+
 </body>
 </html>

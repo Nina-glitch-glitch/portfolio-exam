@@ -1,13 +1,13 @@
 /* =========================================
-   DESIGN TOKENS
+   TOKENS
 ========================================= */
 :root {
   --color-bg: #2a2a2a;
   --color-text-base: #f6c7a8;
-  --color-text-soft: rgba(246, 199, 168, 0.9);   /* 90% – brukt i hero/overskrifter */
+  --color-text-soft: rgba(246, 199, 168, 0.9);
   --color-dark: #222;
   --color-accent: #f6c7a8;
-  --color-accent-soft: rgba(246, 199, 168, 0.8); /* 80% – knapper, contact-card */
+  --color-accent-soft: rgba(246, 199, 168, 0.8);
   --color-border-soft: rgba(255, 255, 255, 0.18);
 
   --max-width: 1400px;
@@ -16,10 +16,14 @@
   --radius-button: 30px;
   --radius-input: 30px;
   --radius-round: 999px;
+
+  --design-panel-bg: #BDB4B4;
+  --design-gap: 1.25rem;
+  --design-panel-max: 740px;
 }
 
 /* =========================================
-   RESET + BASE
+   BASE
 ========================================= */
 *,
 *::before,
@@ -27,11 +31,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  min-width: 0; /* viktig for grid/flex på små skjermer */
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: "Shanti", sans-serif;
@@ -40,25 +43,26 @@ body {
   background: var(--color-bg);
 }
 
-/* Links */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
 a:hover,
-a:focus-visible {
-  opacity: 0.85;
-}
+a:focus-visible { opacity: 0.85; }
 
-/* Layout helper for sections */
 .section {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   padding: 3rem 0;
 }
 
-/* Skjult tekst for skjermleser */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -72,7 +76,7 @@ a:focus-visible {
 }
 
 /* =========================================
-   SKIP LINK
+   ACCESSIBILITY
 ========================================= */
 .skip-link {
   position: absolute;
@@ -84,10 +88,7 @@ a:focus-visible {
   border-radius: var(--radius-round);
   z-index: 20;
 }
-
-.skip-link:focus {
-  left: 1rem;
-}
+.skip-link:focus { left: 1rem; }
 
 /* =========================================
    HEADER / NAV
@@ -116,9 +117,7 @@ a:focus-visible {
   justify-content: center;
 }
 
-.site-nav__list a {
-  position: relative;
-}
+.site-nav__list a { position: relative; }
 
 .site-nav__list a::after {
   content: "";
@@ -133,12 +132,10 @@ a:focus-visible {
 
 .site-nav__list a:hover::after,
 .site-nav__list a:focus-visible::after,
-.site-nav__list a[aria-current="page"]::after {
-  width: 100%;
-}
+.site-nav__list a[aria-current="page"]::after { width: 100%; }
 
 /* =========================================
-   GENERELLE KNAPPER
+   BUTTONS
 ========================================= */
 .btn {
   display: inline-flex;
@@ -154,14 +151,18 @@ a:focus-visible {
 }
 
 .btn--primary {
-  background: var(--color-accent);
-  color: var(--color-dark);
+  min-width: 200px;
+  height: 50px;
+  padding: 0 1.6rem;
+  border-radius: 30px;
+  background: var(--color-accent-soft);
+  color: #222;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
 }
 
 .btn--primary:hover,
-.btn--primary:focus-visible {
-  transform: translateY(-1px);
-}
+.btn--primary:focus-visible { transform: translateY(-1px); }
 
 .btn--secondary {
   background: transparent;
@@ -170,48 +171,23 @@ a:focus-visible {
 }
 
 .btn--secondary:hover,
-.btn--secondary:focus-visible {
-  background: rgba(246, 199, 168, 0.1);
-}
-
-/* Hero-knapper – 200 x 50 som i Figma */
-.btn--primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 200px;
-  height: 50px;
-  padding: 0 1.6rem;
-  border-radius: 30px;
-  background: var(--color-accent-soft);   /* 80 % */
-  color: #222;
-  font-weight: 600;
-  border: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-  cursor: pointer;
-}
+.btn--secondary:focus-visible { background: rgba(246, 199, 168, 0.1); }
 
 /* =========================================
-   HERO – DESKTOP
+   LANDING PAGE
 ========================================= */
-.hero {
-  padding: 1rem 0 4rem;
-}
+.hero { padding: 1rem 0 4rem; }
 
-/* Desktop: én container, større gap mellom tekst og bilde */
 .hero__inner {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   display: grid;
-  /* tekstkolonne | bildekollonne */
   grid-template-columns: 1fr 1fr;
-  /* STYR AVSTANDEN MELLOM TEKST OG BILDE HER */
   column-gap: 15rem;
   align-items: center;
   min-height: 33rem;
 }
 
-/* Venstre side – tekstblokket */
 .hero__content {
   max-width: 29rem;
   text-align: center;
@@ -219,7 +195,6 @@ a:focus-visible {
 }
 
 .hero__title {
-  font-family: "Shanti", sans-serif;
   font-weight: 450;
   color: rgba(246, 199, 168, 0.9);
   font-size: 2.8rem;
@@ -228,44 +203,38 @@ a:focus-visible {
 }
 
 .hero__lead {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.56rem;        /* 25px ≈ 1.56rem */
-  line-height: 2.7;          /* tilsvarer 70px på 25px font */
-  letter-spacing: 0.16em;    /* 16% */
+  font-size: 1.56rem;
+  line-height: 2.7;
+  letter-spacing: 0.16em;
   color: rgba(246, 199, 168, 0.9);
   margin-bottom: 6rem;
 }
 
-/* Knapper under teksten */
 .hero__actions {
   display: flex;
   justify-content: center;
   gap: 1.75rem;
 }
 
-/* Høyre side – bildekolonnen */
 .hero__media {
   position: relative;
   justify-self: end;
   width: 100%;
-  max-width: 520px;     /* bredden på selve bildet */
-  height: 700px;        /* høyden – juster 600–700 hvis du vil */
+  max-width: 520px;
+  height: 700px;
   overflow: hidden;
   margin-top: -3rem;
 }
 
-/* Selve bildet – fyller ramma */
 .hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50%;   /* evt: 60% 50% hvis du vil forskyve litt */
-  display: block;
+  object-position: 50%;
   border-radius: 0;
   border: none;
 }
 
-/* Sotingen fra midten og ut mot høyre */
 .hero__media::after {
   content: "";
   position: absolute;
@@ -278,146 +247,74 @@ a:focus-visible {
   pointer-events: none;
 }
 
-/* =========================================
-   WHY SECTION
-========================================= */
-.why {
-  padding: 6rem 0;               /* luft over/under seksjonen */
-}
+.why { padding: 6rem 0; }
 
 .why__inner {
   width: min(1270px, 90%);
-  margin: 0 auto;                /* midt på siden */
+  margin: 0 auto;
   text-align: left;
 }
 
-/* Tittel */
 .why__title {
-  font-family: "Shanti", sans-serif;
-  font-weight: 300;              /* litt tynnere */
+  font-weight: 300;
   font-size: 2rem;
   letter-spacing: 0.12em;
   margin-bottom: 2.5rem;
-  margin-left: 0;                /* VIKTIG: ingen innrykk */
   color: var(--color-text-soft);
 }
 
-/* Brødtekst */
 .why__text {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.375rem;           /* 25px */
-  line-height: 2.4rem;           /* ca 50px */
+  font-size: 1.375rem;
+  line-height: 2.4rem;
   letter-spacing: 0.12em;
   color: var(--color-text-base);
   max-width: 62rem;
-  text-align: left;
-  margin-left: 0;                /* VIKTIG: ingen innrykk */
 }
 
 .why__actions {
   display: flex;
-  justify-content: flex-start;   /* starter på samme venstrekant som teksten */
+  justify-content: flex-start;
   max-width: 62rem;
-  margin: 3rem 0 0;              /* litt luft ned fra teksten */
+  margin: 3rem 0 0;
 }
 
-.why__actions .btn {
-  margin-left: 0;                /* ingen ekstra innrykk */
-}
-
-/* =========================================
-   MY EXPERIENCE & GOALS
-========================================= */
-.experience {
-  padding: 5rem 0;
-}
+.experience { padding: 5rem 0; }
 
 .experience__inner {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr; /* litt bredere tekst, smalere bilde */
+  grid-template-columns: 1.3fr 0.7fr;
   align-items: center;
   gap: 2rem;
   width: min(1270px, 90%);
   margin: 0 auto;
 }
 
-/* Tittel – My Experience & Goals (match WHY-stil) */
 .experience__title {
-  font-family: "Shanti", sans-serif;
-  font-weight: 300;              /* litt tynnere */
+  font-weight: 300;
   font-size: 2rem;
   letter-spacing: 0.12em;
   margin-bottom: 2.5rem;
-  margin-left: 0;                /* VIKTIG: ingen innrykk */
   color: var(--color-text-soft);
 }
 
-/* Brødtekst – My Experience & Goals (identisk med WHY-seksjonen) */
 .experience__text {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.375rem;           /* 25px */
-  line-height: 2.4rem;           /* ca 50px */
+  font-size: 1.375rem;
+  line-height: 2.4rem;
   letter-spacing: 0.12em;
-  color: var(--color-text-base);
   max-width: 62rem;
   text-align: left;
-  margin-left: 0;                /* VIKTIG: ingen innrykk */
 }
 
-.experience__text p + p {
-  margin-top: 0.6rem;
-}
+.experience__text p + p { margin-top: 0.6rem; }
 
-/* Bildekolonne */
 .experience__media {
   justify-self: end;
-  max-width: 420px;   /* juster om du vil ha bildet større/mindre */
+  max-width: 420px;
 }
 
-.experience__media img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0; /* <-- Viktig! */
-}
+.experience__media img { border-radius: 0; }
 
-/* ---------- Mobile / tablet (experience) ---------- */
-@media (max-width: 900px) {
-  .experience__inner {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
-  }
-
-  .experience__media {
-    justify-self: center;
-    max-width: 500px;
-  }
-
-  .experience__title {
-    text-align: left;
-  }
-}
-
-/* MOBIL / TABLET – legg bildet over teksten */
-@media (max-width: 900px) {
-  .experience__inner {
-    grid-template-columns: 1fr;
-    row-gap: 2.5rem;
-  }
-
-  .experience__media {
-    order: -1;
-    justify-self: center;
-  }
-
-  .experience__media img {
-    max-width: 100%;
-  }
-}
-
-/* =========================================
-   GENERELLE FORM-STILER (fallback)
-========================================= */
+/* CONTACT */
 input,
 textarea {
   width: 100%;
@@ -427,7 +324,6 @@ textarea {
   background: #2a2a2a;
   color: var(--color-text-base);
   font: inherit;
-  box-sizing: border-box;
 }
 
 input:focus-visible,
@@ -442,19 +338,15 @@ textarea:focus-visible {
   margin-top: 0.4rem;
 }
 
-/* =========================================
-   CONTACT – MATCH FIGMA
-========================================= */
 .section--contact .section__inner {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 674px 1fr;   /* kortet + knappesøyle */
+  grid-template-columns: 674px 1fr;
   column-gap: 5rem;
   align-items: flex-start;
 }
 
-/* Kortet til venstre */
 .contact-card {
   width: 674px;
   max-width: 674px;
@@ -474,17 +366,14 @@ textarea:focus-visible {
   margin-bottom: 1.4rem;
 }
 
-/* Let’s talk – heading i contact-kortet */
 .contact-card h2 {
-  font-family: "Shanti", sans-serif;
-  font-weight: 400;      /* ikke bold */
+  font-weight: 400;
   color: #222;
   font-size: 1.6rem;
 }
 
-/* Formular inne i kortet */
 .contact-form {
-  width: 594px;             /* eksakt fra Figma */
+  width: 594px;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
@@ -502,7 +391,7 @@ textarea:focus-visible {
 
 .form-row textarea {
   width: 594px;
-  height: 240px;           /* litt lavere enn 278 → kortet blir noe lavere */
+  height: 240px;
   background: #ffffff;
   border-radius: 30px;
   border: none;
@@ -511,7 +400,6 @@ textarea:focus-visible {
   resize: none;
 }
 
-/* Submit-knappen nederst i kortet */
 .btn-submit {
   width: 594px;
   height: 50px;
@@ -524,11 +412,10 @@ textarea:focus-visible {
   cursor: pointer;
 }
 
-/* Pill-knapper (Facebook / Gmail / LinkedIn) til høyre */
 .contact-actions {
   display: flex;
   flex-direction: column;
-  gap: 3.125rem;       /* 50px vertikalt mellom knappene */
+  gap: 3.125rem;
   align-items: flex-start;
   justify-self: end;
   margin-top: 4rem;
@@ -554,34 +441,9 @@ textarea:focus-visible {
 }
 
 /* =========================================
-   PROJECT PAGE (projects.html)
+   PROJECT PAGE
 ========================================= */
-/* =========================================
-   PROJECT HERO (two-column intro section)
-========================================= */
-
-.project-hero {
-  padding: 6rem 0 4rem;
-}
-
-.project-hero__inner {
-  width: min(1270px, 90%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* tekst | bilde */
-  gap: 4rem;
-  align-items: center;
-}
-
-.project-hero__content {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-/* Titles inside the blocks */
 .project-block__title {
-  font-family: "Shanti", sans-serif;
   font-size: 1.8rem;
   font-weight: 300;
   letter-spacing: 0.12em;
@@ -589,311 +451,165 @@ textarea:focus-visible {
   margin-bottom: 0.8rem;
 }
 
-/* Body text */
 .project-block p {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.375rem;     /* ca 22px */
-  line-height: 2.3rem;
-  letter-spacing: 0.12em;
-  color: var(--color-text-base);
-  max-width: 60rem;
-}
-
-/* IMAGE COLUMN */
-.project-hero__media {
-  justify-self: end;
-  max-width: 520px;
-  margin-top: 3rem;  /* juster 2–6rem etter smak */
-  align-self: center;
-}
-
-.project-hero__media img {
-  width: 100%;
-  display: block;
-  border-radius: 0;
-}
-
-/* RESPONSIVT FOR PROJECT HERO */
-@media (max-width: 900px) {
-  .project-hero {
-    padding: 3.5rem 0 2.5rem;
-  }
-
-  .project-hero__inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .project-hero__media {
-    justify-self: center;
-    max-width: 420px;
-    order: -1;             /* bilde over teksten på mobil */
-  }
-
-  .project-block p {
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-  }
-}
-/* =========================================
-   PROJECT PAGE (projects.html)
-========================================= */
-
-/* -----------------------------------------
-   A) PROJECT HERO – Overview / Problem / Solution
------------------------------------------- */
-
-.project-hero {
-  padding: 6rem 0 4rem;
-}
-
-.project-hero__inner {
-  width: min(1270px, 90%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* tekst | bilde */
-  gap: 4rem;
-  align-items: flex-start;
-}
-
-.project-hero__content {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-/* Titler i Overview / Problem / Solution */
-.project-block__title {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: var(--color-text-soft);
-  margin-bottom: 0.8rem;
-}
-
-/* Brødtekst i Overview / Problem / Solution */
-.project-block p {
-  font-family: "Shanti", sans-serif;
-  font-size: 1.375rem;     /* ca 22–25px */
-  line-height: 2.3rem;
-  letter-spacing: 0.12em;
-  color: var(--color-text-base);
-  max-width: 60rem;
-}
-
-/* Bildekolonnen (laptop-mockup) */
-.project-hero__media {
-  justify-self: end;
-  max-width: 520px;
-}
-
-.project-hero__media img {
-  width: 100%;
-  display: block;
-  border-radius: 0;
-}
-
-/* Responsivt hero-oppsett */
-@media (max-width: 900px) {
-  .project-hero {
-    padding: 3.5rem 0 2.5rem;
-  }
-
-  .project-hero__inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .project-hero__media {
-    justify-self: center;
-    max-width: 100%;
-    order: -1;              /* bilde over teksten på mobil */
-  }
-
-  .project-block p {
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-  }
-}
-
-/* -----------------------------------------
-   B) PROJECT – RESEARCH + DEFINITION & IDEATION
------------------------------------------- */
-
-.project-research {
-  padding: 4rem 0 5rem;
-}
-
-.project-research__inner {
-  width: min(1270px, 90%);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;  /* tekst | bilde */
-  grid-template-rows: auto auto;
-  column-gap: 4rem;
-  row-gap: 3rem;
-  align-items: flex-start;
-}
-
-/* Plassering i griden (slik du har HTML-en nå) */
-.research-block {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-/* --- Survey image sizing --- */
-.research-media--survey {
-  max-width: 520px;        /* juster: 420–650px */
-  justify-self: end;       /* holder den pent til høyre */
-}
-
-.research-media--survey img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-
-.research-media--mapping {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.definition-block {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* Felles bildestil (survey + story map).
-   Her kommer "de nye variablene": max-width osv. */
-.research-media img {
-  width: 100%;
-  max-width: 420px;       /* gjør at bildene ikke blir gigantiske */
-  display: block;
-  margin-top: 2rem;
-  border-radius: 0;
-}
-
-/* Tekststil – matcher Overview/Problem/Solution */
-.research-block p,
-.definition-block p {
-  font-family: "Shanti", sans-serif;
   font-size: 1.375rem;
   line-height: 2.3rem;
   letter-spacing: 0.12em;
   color: var(--color-text-base);
   max-width: 60rem;
 }
-/* =========================================
-   PROJECT – DESIGN (tekst + bilder)
-========================================= */
 
-:root{
-  --design-panel-bg: #BDB4B4;
-  --design-gap: 1.25rem;
-  --design-panel-pad: 1.25rem;
-  --design-panel-max: 740px;
+.project-hero { padding: 6rem 0 4rem; }
 
-  --thumb-height: 220px;   /* juster ved behov */
-}
-
-.project-design {
-  padding: 4rem 0 5rem;
-}
-
-.project-design__inner{
+.project-hero__inner {
   width: min(1270px, 90%);
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 4rem;
+  align-items: flex-start;
+}
+
+.project-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.project-hero__media {
+  justify-self: end;
+  max-width: 520px;
+  margin-top: 3rem;
+  align-self: center;
+}
+
+.project-hero__media img { border-radius: 0; }
+
+.project-research { padding: 4rem 0 5rem; }
+
+.project-research__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 4rem;
+  row-gap: 3rem;
+  align-items: flex-start;
+}
+
+.research-block { grid-column: 1; grid-row: 1; }
+
+.research-media--survey {
+  max-width: 520px;
+  justify-self: end;
+}
+
+.research-media--survey img {
+  width: 100%;
+  height: auto;
+}
+
+.research-media--mapping { grid-column: 1; grid-row: 2; }
+.definition-block { grid-column: 2; grid-row: 2; }
+
+.research-media img {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 2rem;
+  border-radius: 0;
+}
+
+.research-block p,
+.definition-block p {
+  font-size: 1.375rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  max-width: 60rem;
+}
+
+.project-design { padding: 4rem 0 5rem; }
+
+.project-design__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(520px, var(--design-panel-max));
+  gap: clamp(2rem, 4vw, 4rem);
   align-items: start;
 }
 
-/* høyre “panel” med bakgrunn */
-.project-design__panel{
-  justify-self: end;
-  width: 100%;
-  max-width: var(--design-panel-max);
-
+.project-design__panel {
   background: var(--design-panel-bg);
-  padding: var(--design-panel-pad);
+  padding: 2rem;
+  align-self: center;
 }
 
-/* bilder generelt */
-.project-design__panel img{
-  width: 100%;
-  display: block;
-}
-
-/* hovedbildet */
-.project-design__main{
-  margin: 0;
-}
-
-/* thumbs (2 ved siden av hverandre) */
-.project-design__thumbs{
-  margin-top: var(--design-gap);
+.project-design__gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1.35fr 1fr;
   gap: var(--design-gap);
+  align-items: stretch;
 }
 
-.project-design__thumb{
+.project-design__shot { margin: 0; }
+
+.project-design__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.project-design__content p {
+  font-size: 1.375rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  max-width: 60rem;
+}
+
+.project-prototype { padding: 4rem 0 5rem; }
+
+.project-prototype__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(520px, 740px);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.project-prototype__content p {
+  font-size: 1.375rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  max-width: 60rem;
+}
+
+.project-prototype__media {
   margin: 0;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: 560px;
 }
 
-.project-design__thumb img{
-  height: var(--thumb-height);
-  object-fit: cover;
+.project-prototype__media img { width: 100%; }
+
+.project-reflection { padding: 4rem 0 6rem; }
+
+.project-reflection__inner {
+  width: min(1270px, 90%);
+  margin: 0 auto;
 }
 
-/* mobil: stack */
-@media (max-width: 900px){
-  .project-design__inner{
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .project-design__panel{
-    justify-self: center;
-    max-width: 520px;
-  }
-
-  .project-design__thumbs{
-    grid-template-columns: 1fr;
-  }
-
-  .project-design__thumb img{
-    height: 260px;
-  }
+.project-reflection__content p {
+  font-size: 1.375rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.12em;
+  max-width: 60rem;
 }
 
-
-/* Mobil: stack */
-@media (max-width: 900px){
-  .project-design__inner{
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .project-design__media{
-    justify-self: center;
-    max-width: 520px;
-  }
-
-  .project-media__thumbs{
-    grid-template-columns: 1fr;
-  }
-
-  .project-thumb img{
-    height: 260px; /* litt høyere på mobil er ofte fint */
-  }
-}
+.project-reflection__content p + p { margin-top: 0.9rem; }
 
 /* =========================================
    FOOTER
@@ -908,43 +624,41 @@ textarea:focus-visible {
   width: min(var(--max-width), 90%);
   margin: 0 auto;
   text-align: center;
-
-  font-family: "Shanti", sans-serif;
-  font-size: 0.9rem;          /* samme som topbar-nav */
-  letter-spacing: 0.12em;     /* gir samme følelse som resten av siten */
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
   color: var(--color-text-soft);
 }
 
-
 /* =========================================
-   RESPONSIVE – MOBIL/TABLET (hero)
+   RESPONSIVE – ALL PAGES
 ========================================= */
+
+/* -----------------------------------------
+   Tablet & small desktop (≤ 900px)
+----------------------------------------- */
 @media (max-width: 900px) {
+
+  /* NAV */
+  .site-header__inner {
+    width: min(900px, 90%);
+  }
+
+  /* HERO */
   .hero {
     padding: 3rem 0 1.5rem;
   }
 
   .hero__inner {
-    width: min(var(--max-width), 90%);
-    margin: 0 auto;
-    padding-left: 0;
-    padding-right: 0;
-    grid-template-columns: 1fr; /* én kolonne */
+    grid-template-columns: 1fr;
     row-gap: 2rem;
   }
 
   .hero__media {
-    order: -1;             /* bilde over tekst */
-    width: 100%;
+    order: -1;
     max-width: 500px;
     height: 320px;
     margin: 0 auto 1.5rem;
-  }
-
-  .hero__media img {
-    width: 100%;
-    height: 100%;
-    object-position: center;
+    justify-self: center;
   }
 
   .hero__content {
@@ -954,5 +668,197 @@ textarea:focus-visible {
 
   .hero__actions {
     justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
+
+  /* EXPERIENCE */
+  .experience__inner {
+    grid-template-columns: 1fr;
+    row-gap: 2.5rem;
+  }
+
+  .experience__media {
+    order: -1;
+    justify-self: center;
+    max-width: 500px;
+  }
+
+  /* CONTACT */
+  .section--contact .section__inner {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
+
+  .contact-actions {
+    justify-self: center;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .contact-card,
+  .contact-form,
+  .form-row input,
+  .form-row textarea,
+  .btn-submit {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* PROJECT */
+  .project-hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .project-hero__inner,
+  .project-design__inner,
+  .project-prototype__inner,
+  .project-research__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .project-hero__media {
+    justify-self: center;
+    max-width: 420px;
+    order: -1;
+    margin-top: 0;
+  }
+
+  .project-design__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .project-prototype__media {
+    max-width: 520px;
+  }
+
+  .research-media--survey {
+    justify-self: center;
+    max-width: 520px;
+  }
+
+  .definition-block {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .project-block p {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+  }
+}
+
+/* -----------------------------------------
+   Mobile (≤ 480px)
+----------------------------------------- */
+@media (max-width: 480px) {
+
+  /* Alignment */
+  .hero__content,
+  .why__inner,
+  .experience__inner,
+  .project-hero__inner,
+  .project-design__inner,
+  .project-prototype__inner {
+    text-align: center;
+  }
+
+  .hero__actions,
+  .why__actions {
+    justify-content: center;
+  }
+
+  /* HERO typography */
+  .hero__title {
+    font-size: 2.2rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__lead {
+    font-size: 1.15rem;
+    line-height: 2.0;
+    letter-spacing: 0.10em;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Buttons */
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn--primary {
+    width: min(320px, 100%);
+    min-width: 0;
+  }
+
+  /* NAV */
+  .site-nav__list {
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* -----------------------------------------
+   Extra small devices (≤ 360px)
+----------------------------------------- */
+@media (max-width: 360px) {
+
+  .section {
+    width: min(var(--max-width), 92%);
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    letter-spacing: 0.10em;
+  }
+
+  .hero__lead {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-card {
+    padding: 1.4rem 1.2rem 1.6rem;
+  }
+
+  .contact-pill {
+    width: min(220px, 100%);
+  }
+}
+
+/* =========================================
+   OVERSKRIFTSHIERARKI
+========================================= */
+.why__title,
+.experience__title,
+.project-block__title {
+  font-size: clamp(2.1rem, 2.3vw, 2.4rem);
+  line-height: 1.25;
+  letter-spacing: 0.14em;
+  margin-bottom: 1.6rem;
+  display: inline-block;
+  position: relative;
+}
+
+.why__title::after,
+.experience__title::after,
+.project-block__title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: rgba(246, 199, 168, 0.45);
+}
+
+/* Brødtekst */
+.why__text,
+.experience__text,
+.project-block p,
+.project-design__content p,
+.project-prototype__content p,
+.project-reflection__content p {
+  letter-spacing: 0.10em;
 }
